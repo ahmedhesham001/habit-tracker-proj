@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom"
-
+import { Button } from "@/components/ui/button"
 function Auth() {
   const navigate = useNavigate()
     return (
         <div>
             <h1>Auth</h1>
-            <button onClick={() => navigate("/dashboard")}>Login</button>
+            <Button onClick={() => navigate("/dashboard")}>Login</Button>
         </div>
     )
 }
