@@ -95,5 +95,5 @@ html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* عشان نمنع الـ Scroll العشوائي بما إننا شغالين Grid */
+  overflow: hidden; 
 }
