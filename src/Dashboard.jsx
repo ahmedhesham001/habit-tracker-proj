@@ -123,7 +123,7 @@ function Dashboard() {
                 <div className="stats col-span-4 row-span-4 bg-gray-50 dark:bg-zinc-800 dark:text-white rounded-3xl shadow-sm flex flex-col justify-center items-center gap-4 relative transition-all duration-500 ease-in-out">
                     <h1 className="text-2xl font-semibold absolute top-4 left-4">Overview</h1>
                     <div className="progress flex justify-center items-center flex-col gap-4 w-full mt-8">
-                        <ProgressRing progress={completedHabits.length / habits.length * 100} />
+                        <ProgressRing progress={(completedHabits.length / habits.length * 100).toFixed(0)} />
                         <p className="text-sm text-gray-500">Today's Progress</p>
                     </div>
                     <div className="grid grid-cols-2 gap-4 justify-center items-center dark:text-white ">
