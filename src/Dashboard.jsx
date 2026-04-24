@@ -30,9 +30,9 @@ function Dashboard() {
         { id: 5, title: "Walk for 30 minutes", streak: 4, completed: false, repetition: "daily", emoji: "🚶" },
     ]);
     return (
-        <div className="bg-gray-200 h-screen w-screen ">
-            <div className="grid grid-cols-12 grid-rows-9 gap-6 h-[calc(100vh-80px)] w-[calc(100vw-80px)] mx-auto">
-                <nav className="col-span-12 row-span-1 bg-gray-50 rounded-2xl shadow-sm flex flex-row justify-between p-4 items-center mt-3">
+        <div className="bg-gray-200 min-h-dvh w-screen ">
+            <div className="grid grid-cols-12 grid-rows-[repeat(9,minmax(0,1fr))] gap-6 min-h-[80vh] max-h-[100vh] w-[95%] max-w-[1600px] mx-auto py-3 overflow-y-scroll scrollbar-hide">
+                <nav className="col-span-12 row-span-1 bg-gray-50 rounded-2xl shadow-sm flex flex-row justify-between p-8 items-center mt-3">
                     <div className="flex flex-col">
                         <h1 className="text-2xl font-semibold">Habit Flow</h1>
                         <p className="text-gray-500 absolute mt-[18px] ml-[120px]">Build better habits, one day at a time.</p>
@@ -51,9 +51,9 @@ function Dashboard() {
                         </div>
                         <button className="h-10 w-10 rounded-full bg-gray-500 flex items-center justify-center text-gray-50">+</button>
                     </header>
-                    <div className="habits flex flex-col gap-4">
+                    <div className="habits flex flex-col gap-5">
                         {habits.map((habit) => (
-                            <div className="flex flex-row justify-between mx-5 gap-[35rem]">
+                            <div className={`border-b-${habit.id===habits.length?1:2} border-gray-200 py-1 flex flex-row justify-between mx-5 gap-[30rem] ${habit.completed ? "opacity-100" : "opacity-50"}`}>
                             <div className="habit flex flex-row justify-center gap-4 ">
                                 <Checkbox className="h-5 w-5 bg-gray-200" id={habit.id} 
                                 onCheckedChange={(checked) => {
