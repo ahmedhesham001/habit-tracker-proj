@@ -25,6 +25,13 @@ function Dashboard() {
             document.documentElement.classList.remove('dark');
         }
     }, [isDarkMode]);
+    const [heatmapData, setHeatmapData] = useState(() => {
+    const savedHeatmap = localStorage.getItem("habit-flow-heatmap");
+    if (savedHeatmap) return JSON.parse(savedHeatmap);
+    const newData = Array.from({ length: 364 }, () => Math.floor(Math.random() * 5));
+    localStorage.setItem("habit-flow-heatmap", JSON.stringify(newData));
+    return newData;
+});
     const [selectedFrequency, setSelectedFrequency] = useState("daily");
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -148,18 +155,15 @@ function Dashboard() {
                             </div>
 
                             <div className="grid grid-cols-[repeat(52,1fr)] grid-rows-7 gap-1.5 flex-1">
-                                {Array.from({ length: 364 }, (_, i) => {
-                                    const rand = Math.floor(Math.random() * 10);
-                                    return (
-                                        <div
-                                            key={i}
-                                            className="aspect-square rounded-sm"
-                                            style={{
-                                                backgroundColor: rand >= 5 ? heatColors[0] : heatColors[rand]
-                                            }}
-                                        />
-                                    );
-                                })}
+                                {heatmapData.map((value, index) => (
+                                    <div
+                                        key={index}
+                                        className="aspect-square rounded-sm"
+                                        style={{
+                                            backgroundColor: value === 0 ? "#EBEDF0" : heatColors[value]
+                                        }}
+                                    />
+                                ))}
                             </div>
                         </div>
                     </div>
