@@ -51,7 +51,7 @@ function Dashboard() {
         { id: 5, title: "Walk for 30 minutes", streak: 4, completed: false, repetition: "daily", emoji: "🚶" },
     ]);
     const completedHabits = habits.filter((habit) => habit.completed);
-    const longestStreak = Math.max(...habits.map(h => h.streak));
+    const longestStreak = Math.max(0,...habits.map(h => h.streak));
     const addHabit = (e) => {
         console.log("addHabit");
         e.preventDefault();
@@ -66,6 +66,9 @@ function Dashboard() {
         };
         setHabits([...habits, newHabit]);
         setIsDialogOpen(false);
+    }
+    const handleDelete = (id) => {
+        setHabits(habits.filter(habit => habit.id !== id));
     }
     return (
         <div className="bg-gray-200 dark:bg-zinc-950 min-h-dvh w-screen transition-all duration-500 ease-in-out ">
@@ -111,8 +114,9 @@ function Dashboard() {
                                     <h1>{habit.emoji}</h1>
                                     <h1 className="text-md font-semibold">{habit.title}</h1>
                                 </div>
-                                <div className={`streak flex flex-row gap-1 justify-end transition-all duration-500 ${!habit.completed ? "opacity-50 grayscale" : "grayscale-0 opacity-100"} `}>
-                                    <img src={fire} alt="" className="w-5 h-5" />
+                                <div className={`streak flex flex-row gap-1 justify-end transition-all duration-500 `}>
+                                    <span onClick={() => handleDelete(habit.id)} className="cursor-pointer text-red-500">X</span>
+                                    <img src={fire} alt="" className={`w-5 h-5 ${!habit.completed ? "opacity-50 grayscale" : "grayscale-0 opacity-100"}`} />
                                     <p className="text-sm">{habit.streak} days</p>
                                 </div>
                             </div>
